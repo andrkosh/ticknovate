@@ -1,0 +1,13 @@
+version: '3'
+services:
+  redis-server:
+    image: 'redis'
+  node-app:
+    build: ./
+    links:
+      - redis-server
+    ports:
+      - 3000:3000
+    environment:
+      - REDIS_HOST=redis-server
+      - REDIS_PORT=6379
